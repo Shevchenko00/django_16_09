@@ -6,6 +6,14 @@ class Author(models.Model):
     name = models.CharField(max_length=100)
 
 
+class Publisher(models.Model):
+    name = models.CharField(max_length=75)
+    release_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
