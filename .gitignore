@@ -1,0 +1,7 @@
+.env
+.idea/
+/.idea
+.venv/
+/.venv
+*.iml
+*.xml
