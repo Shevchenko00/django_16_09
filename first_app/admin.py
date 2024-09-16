@@ -1,3 +1,5 @@
+from atexit import register
+
 from django.contrib import admin
 
 from .models.book import Book, Publisher, Author
@@ -13,8 +15,16 @@ class BookAdmin(admin.ModelAdmin):
     list_per_page = 2
     # fields = ('title', 'author', 'published_date', 'registered')
 
-# admin.site.register(Book, BookAdmin)
-@admin.register(Publisher)
+
+
 class BookInLine(admin.TabularInline):
     model = Book
     extra = 1
+
+
+@admin.register(Publisher)
+class PublisherAdmin(admin.ModelAdmin):
+    inlines = [BookInLine]
+    list_display = ('name', 'registered_date')
+
+# admin.site.register(Publisher)

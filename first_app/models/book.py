@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.db.models import UniqueConstraint, Q
 
@@ -8,7 +9,7 @@ class Author(models.Model):
 
 class Publisher(models.Model):
     name = models.CharField(max_length=75)
-    release_date = models.DateField(auto_now_add=True)
+    registered_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name
@@ -16,15 +17,14 @@ class Publisher(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
     published_date = models.DateField()
     registered = models.BooleanField(null=True)
     managed = models.BooleanField(null=True)
-    authors = models.ForeignKey(Author, on_delete=models.CASCADE)
-    publisher_id = models.ForeignKey(Publisher, on_delete=models.CASCADE, related_name='books', null=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)  # Исправлено с authors на author
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, related_name='books', null=True)  # Исправлено с publisher_id
 
     def __str__(self):
-        return f"{self.title} написано {self.author}"
+        return f"{self.title} написано {self.author.name}"
 
     class Meta:
         db_table = 'Book'
