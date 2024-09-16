@@ -21,6 +21,7 @@ class Book(models.Model):
     registered = models.BooleanField(null=True)
     managed = models.BooleanField(null=True)
     authors = models.ForeignKey(Author, on_delete=models.CASCADE)
+    publisher_id = models.ForeignKey(Publisher, on_delete=models.CASCADE, related_name='books', null=True)
 
     def __str__(self):
         return f"{self.title} написано {self.author}"
