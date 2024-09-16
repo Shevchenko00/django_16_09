@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models.book import Book
+from .models.book import Book, Publisher, Author
 
 
 @admin.register(Book)
@@ -14,3 +14,7 @@ class BookAdmin(admin.ModelAdmin):
     # fields = ('title', 'author', 'published_date', 'registered')
 
 # admin.site.register(Book, BookAdmin)
+@admin.register(Publisher)
+class BookInLine(admin.TabularInline):
+    model = Book
+    extra = 1
