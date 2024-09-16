@@ -26,8 +26,8 @@ class Book(models.Model):
                                 name='title_auth_index')]
 
         constraints = [UniqueConstraint(fields=['title'],
-                                       condition=Q(registered=True),
-                                       name='unique_book_registered')]
+                                        condition=Q(registered=True),
+                                        name='unique_book_registered')]
 
         verbose_name = 'fiction book'  # Человекочитаемое имя модели
         verbose_name_plural = 'fiction books'  # Человекочитаемое множественное число имени модели
