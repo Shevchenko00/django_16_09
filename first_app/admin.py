@@ -2,7 +2,7 @@ from atexit import register
 
 from django.contrib import admin
 
-from .models.book import Book, Publisher, Author
+from .models.book import Book, Publisher, Author, Post
 
 
 @admin.register(Book)
@@ -17,7 +17,7 @@ class BookAdmin(admin.ModelAdmin):
 
 
 
-class BookInLine(admin.TabularInline):
+class BookInLine(admin.StackedInline):
     model = Book
     extra = 1
 
@@ -27,4 +27,5 @@ class PublisherAdmin(admin.ModelAdmin):
     inlines = [BookInLine]
     list_display = ('name', 'registered_date')
 
-# admin.site.register(Publisher)
+admin.site.register(Author)
+admin.site.register(Post)
